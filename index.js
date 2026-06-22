@@ -2,7 +2,7 @@ import packer from './lib/packer.js'
 import { h, onBeforeUnmount, onMounted, ref } from 'vue'
 
 export default {
-    install: (app, options) =>
+    install: (app) =>
     {
         app.component('VueBinpacker', {
             props:
@@ -37,7 +37,7 @@ export default {
                     default: false
                 }
             },
-            setup (props, { slots })
+            setup(props, { slots })
             {
                 const element = ref(null)
                 const observerPause = ref(false)
@@ -123,8 +123,8 @@ export default {
 
                 onBeforeUnmount(() =>
                 {
-                    observerResize.disconnect()
-                    observerMutation.disconnect()
+                    observerResize?.disconnect()
+                    observerMutation?.disconnect()
                 })
 
                 return () => h('div', { ref: element }, slots.default())
